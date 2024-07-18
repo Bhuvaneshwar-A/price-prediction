@@ -55,7 +55,7 @@ def make_predictions(model_type, data, num_candles):
         X, y, scaler = prepare_data_lstm(data['Close'].values, look_back)  # Use 'Close' column for prediction
         X = np.reshape(X, (X.shape[0], X.shape[1], 1))
         model = create_lstm_model(look_back)
-        model.fit(X, y, epochs=30, batch_size=32, verbose=0)
+        model.fit(X, y, epochs=20, batch_size=64, verbose=0)
         last_60_days = data['Close'].values[-90:]  # Use 'Close' column for prediction
         last_60_days_scaled = scaler.transform(last_60_days.reshape(-1, 1))
         X_test = []
